@@ -28,15 +28,15 @@ async def home(token: str = Depends(oauth2_scheme)):
     # Your secured endpoint logic here
     return {"message": "This is a secured endpoint"}
 
-# @app.get("/students")
-# async def get_students(token: str = Depends(oauth2_scheme)):
-#     # Validate the token using Keycloak
-#     token_info = keycloak_openid.introspect(token)
+@app.get("/students")
+async def get_students(token: str = Depends(oauth2_scheme)):
+    # Validate the token using Keycloak
+    token_info = keycloak_openid.introspect(token)
 
-#     print("get students")
+    print("get students")
 
-#     if not token_info["active"]:
-#         raise HTTPException(status_code=401, detail="Invalid token")
+    if not token_info["active"]:
+        raise HTTPException(status_code=401, detail="Invalid token")
 
-#     # Your secured endpoint logic here
-#     return {"message": "This is a secured endpoint"}
+    # Your secured endpoint logic here
+    return {"message": "This is a secured endpoint"}
